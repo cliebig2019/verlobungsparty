@@ -1,0 +1,292 @@
+/* ==========================================
+   ANLEITUNG ZUR BEARBEITUNG
+   ==========================================
+   
+   Um Essensideen zu ändern:
+   - Gehe zu index.html
+   - Finde den Abschnitt "Essensideen"
+   - Bearbeite die <li> Elemente in der Liste
+   
+   Um bestätigte Speisen hinzuzufügen:
+   - Gehe zu index.html
+   - Finde den Abschnitt "Bestätigte Speisen"
+   - Kopiere das Kommentar-Beispiel und füge neue Einträge hinzu
+   
+   Um Farben anzupassen:
+   - Ändere die CSS-Variablen unten im :root Bereich
+   ========================================== */
+
+:root {
+  /* Farben aus der Einladung */
+  --mauve: #b8697d;
+  --light-pink: #f5e6ed;
+  --gold: #c4a962;
+  --burgundy: #7a3f4e;
+  --white: #ffffff;
+  --dark-text: #2d2d2d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Georgia", "Times New Roman", serif;
+  color: var(--dark-text);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animierter Hintergrund */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(45deg, var(--light-pink), var(--white), #ffe8f0, var(--light-pink), #fff5f8);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* Hero Bereich */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  border: 3px solid var(--mauve);
+  margin-bottom: 60px;
+  box-shadow: 0 10px 40px rgba(184, 105, 125, 0.2);
+}
+
+.star {
+  position: absolute;
+  font-size: 24px;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.star-1 {
+  top: 20px;
+  left: 30px;
+  animation-delay: 0s;
+}
+
+.star-2 {
+  top: 40px;
+  right: 40px;
+  animation-delay: 0.7s;
+}
+
+.star-3 {
+  bottom: 30px;
+  left: 50px;
+  animation-delay: 1.4s;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2) rotate(20deg);
+  }
+}
+
+.title {
+  font-size: clamp(36px, 8vw, 64px);
+  font-weight: 300;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--dark-text);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.title-script {
+  display: block;
+  font-family: "Brush Script MT", cursive;
+  font-size: clamp(48px, 10vw, 80px);
+  color: var(--gold);
+  text-transform: none;
+  letter-spacing: 2px;
+  font-weight: 400;
+  margin-top: -10px;
+  text-shadow: 2px 2px 4px rgba(196, 169, 98, 0.3);
+}
+
+.names {
+  font-size: clamp(24px, 5vw, 36px);
+  color: var(--mauve);
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-top: 30px;
+}
+
+/* Food Sections */
+.food-section {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  margin-bottom: 40px;
+  border: 2px solid rgba(184, 105, 125, 0.3);
+  box-shadow: 0 8px 30px rgba(184, 105, 125, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.food-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(184, 105, 125, 0.25);
+}
+
+.food-section.confirmed {
+  border-color: rgba(196, 169, 98, 0.4);
+}
+
+.section-title {
+  font-size: clamp(24px, 4vw, 32px);
+  color: var(--burgundy);
+  margin-bottom: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.section-description {
+  font-size: 16px;
+  color: var(--dark-text);
+  margin-bottom: 30px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.food-list {
+  list-style: none;
+  padding: 0;
+}
+
+.food-item {
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  background: rgba(245, 230, 237, 0.4);
+  border-left: 4px solid var(--mauve);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+.food-item:hover {
+  background: rgba(245, 230, 237, 0.7);
+  transform: translateX(5px);
+}
+
+.confirmed-list .food-item {
+  border-left-color: var(--gold);
+  background: rgba(255, 250, 240, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.confirmed-list .food-item:hover {
+  background: rgba(255, 250, 240, 0.8);
+}
+
+.food-name {
+  font-weight: 600;
+  color: var(--dark-text);
+}
+
+.food-contributor {
+  color: var(--gold);
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 60px;
+}
+
+.footer-text {
+  font-size: 20px;
+  color: var(--burgundy);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  .hero {
+    padding: 40px 20px;
+    margin-bottom: 40px;
+  }
+
+  .food-section {
+    padding: 30px 20px;
+  }
+
+  .star {
+    font-size: 18px;
+  }
+
+  .confirmed-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .animated-background {
+    display: none;
+  }
+
+  body {
+    background: white;
+  }
+
+  .food-section,
+  .hero {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
